@@ -62,12 +62,16 @@ class Calculator(QWidget):
         self.b_multiply = QPushButton("*", self)
         self.hbox_third.addWidget(self.b_multiply)
 
+        self.b_divide = QPushButton("/", self)
+        self.hbox_fourth.addWidget(self.b_divide)
+
         self.b_result = QPushButton("=", self)
         self.hbox_result.addWidget(self.b_result)
 
         self.b_plus.clicked.connect(lambda: self._operation("+"))
         self.b_minus.clicked.connect(lambda: self._operation("-"))
         self.b_multiply.clicked.connect(lambda: self._operation("*"))
+        self.b_divide.clicked.connect(lambda: self._operation("/"))
         self.b_result.clicked.connect(self._result)
 
         self.b_1.clicked.connect(lambda: self._button("1"))
@@ -98,6 +102,8 @@ class Calculator(QWidget):
             self.input.setText(str(self.num_1 - self.num_2))
         if self.op == "*":
             self.input.setText(str(self.num_1 * self.num_2))
+        if self.op == "/" and (self.num_2 != '0'):
+            self.input.setText(str(self.num_1 / self.num_2))
 
 
 app = QApplication(sys.argv)
